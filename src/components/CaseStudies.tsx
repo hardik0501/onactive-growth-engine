@@ -24,12 +24,14 @@ const cases = [
 
 const CaseStudies = () => {
   return (
-    <section id="case-studies" className="section-padding bg-secondary">
-      <div className="section-container">
+    <section id="case-studies" className="section-padding bg-secondary relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(40_100%_48%/0.04),transparent_50%)] pointer-events-none" />
+      <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
           <h2 className="heading-section mb-4">Case Studies</h2>
@@ -40,14 +42,20 @@ const CaseStudies = () => {
           {cases.map((c, i) => (
             <motion.div
               key={c.industry}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="card-service flex flex-col"
+              initial={{ opacity: 0, y: 50, rotateX: 5 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: i * 0.12, duration: 0.6, type: "spring", stiffness: 80 }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, type: "spring", stiffness: 300 },
+              }}
+              className="card-service flex flex-col group cursor-default"
             >
               <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-accent" />
+                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                  <TrendingUp className="w-5 h-5 text-accent" />
+                </motion.div>
                 <span className="text-sm font-semibold text-accent">{c.industry}</span>
               </div>
               <div className="space-y-3 flex-1">
@@ -64,9 +72,12 @@ const CaseStudies = () => {
                   <p className="text-sm font-semibold text-foreground">{c.result}</p>
                 </div>
               </div>
-              <button className="mt-4 text-sm font-medium text-primary hover:text-accent transition-colors inline-flex items-center gap-1">
+              <motion.button
+                whileHover={{ x: 4 }}
+                className="mt-4 text-sm font-medium text-primary hover:text-accent transition-colors inline-flex items-center gap-1"
+              >
                 View Detailed Case Study <ArrowUpRight className="w-4 h-4" />
-              </button>
+              </motion.button>
             </motion.div>
           ))}
         </div>

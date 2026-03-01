@@ -8,32 +8,23 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 13%;
-
     --card: 0 0% 100%;
     --card-foreground: 0 0% 13%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 13%;
-
     --primary: 222 63% 33%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 220 20% 96%;
     --secondary-foreground: 222 63% 33%;
-
     --muted: 220 20% 96%;
     --muted-foreground: 220 10% 46%;
-
     --accent: 40 100% 48%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 222 63% 33%;
-
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
@@ -45,12 +36,13 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 222 63% 33%;
 
-    /* Custom tokens */
     --hero-gradient: linear-gradient(135deg, hsl(222, 63%, 33%) 0%, hsl(222, 63%, 20%) 100%);
     --cta-gradient: linear-gradient(135deg, hsl(222, 63%, 25%) 0%, hsl(222, 63%, 15%) 100%);
     --shadow-card: 0 4px 24px -4px hsl(222 63% 33% / 0.08);
-    --shadow-card-hover: 0 12px 32px -8px hsl(222 63% 33% / 0.15);
+    --shadow-card-hover: 0 20px 40px -12px hsl(222 63% 33% / 0.2);
     --shadow-accent: 0 4px 16px -4px hsl(40 100% 48% / 0.4);
+    --shadow-accent-hover: 0 8px 24px -4px hsl(40 100% 48% / 0.5);
+    --glow-accent: 0 0 30px hsl(40 100% 48% / 0.15);
   }
 
   .dark {
@@ -111,24 +103,43 @@
   }
 
   .card-service {
-    @apply bg-card rounded-xl p-6 md:p-8 transition-all duration-300 border border-border;
+    @apply bg-card rounded-xl p-6 md:p-8 border border-border relative overflow-hidden;
     box-shadow: var(--shadow-card);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-service::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 rounded-xl;
+    background: linear-gradient(135deg, hsl(40 100% 48% / 0.05), hsl(222 63% 33% / 0.05));
+    transition: opacity 0.4s ease;
+  }
+  .card-service:hover::before {
+    @apply opacity-100;
   }
   .card-service:hover {
     box-shadow: var(--shadow-card-hover);
-    @apply -translate-y-1 border-accent/30;
+    @apply -translate-y-2 border-accent/40;
   }
 
   .btn-primary {
-    @apply bg-accent text-accent-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:brightness-110 inline-flex items-center gap-2;
+    @apply bg-accent text-accent-foreground font-semibold px-8 py-3 rounded-lg inline-flex items-center gap-2 relative overflow-hidden;
     box-shadow: var(--shadow-accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .btn-primary:hover {
-    @apply scale-[1.02];
+    @apply scale-[1.03];
+    box-shadow: var(--shadow-accent-hover);
+  }
+  .btn-primary:active {
+    @apply scale-[0.98];
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:bg-primary hover:text-primary-foreground inline-flex items-center gap-2;
+    @apply border-2 border-primary text-primary font-semibold px-8 py-3 rounded-lg inline-flex items-center gap-2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-outline:hover {
+    @apply bg-primary text-primary-foreground;
   }
 
   .gradient-hero {
@@ -140,13 +151,45 @@
   }
 }
 
-/* Counter animation */
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Floating animation for parallax elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
 
-/* Smooth scroll */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px hsl(40 100% 48% / 0.1); }
+  50% { box-shadow: 0 0 30px hsl(40 100% 48% / 0.25); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
 html {
   scroll-behavior: smooth;
 }

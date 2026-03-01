@@ -1,35 +1,62 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import heroDashboard from "@/assets/hero-dashboard.png";
 
 const HeroSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
   return (
-    <section className="gradient-hero overflow-hidden">
-      <div className="section-container py-16 md:py-24 lg:py-32">
+    <section ref={ref} className="gradient-hero overflow-hidden relative">
+      {/* Parallax floating shapes */}
+      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -60]) }} className="absolute top-20 left-10 w-64 h-64 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
+      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }} className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-primary-foreground/5 blur-3xl pointer-events-none" />
+
+      <div className="section-container py-16 md:py-24 lg:py-32 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-primary-foreground"
-          >
-            <div className="inline-flex items-center gap-2 bg-primary-foreground/10 rounded-full px-4 py-1.5 mb-6">
+          <motion.div style={{ y, opacity }} className="text-primary-foreground">
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-primary-foreground/10 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm"
+            >
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span className="text-xs font-medium text-primary-foreground/80">Since 2019 • Jaipur, India</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-tight mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-tight mb-6"
+            >
               360° Digital Marketing Agency in Jaipur Driving{" "}
               <span className="text-accent">Real Business Growth</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed"
+            >
               Performance-driven marketing strategies that convert clicks into customers.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="btn-primary">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <Link to="/contact" className="btn-primary animate-glow-pulse">
                 Book Free Strategy Call
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -37,21 +64,26 @@ const HeroSection = () => {
                 <Play className="w-4 h-4" />
                 View Our Work
               </a>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{ y: imgY, scale: imgScale }}
             className="hidden lg:block"
           >
-            <img
-              src={heroDashboard}
-              alt="Digital Marketing Dashboard showing growth analytics"
-              className="rounded-2xl shadow-2xl w-full"
-              loading="eager"
-            />
+            <motion.div
+              initial={{ opacity: 0, x: 60, rotateY: 10 }}
+              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="animate-float-slow"
+            >
+              <img
+                src={heroDashboard}
+                alt="Digital Marketing Dashboard showing growth analytics"
+                className="rounded-2xl shadow-2xl w-full"
+                loading="eager"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
