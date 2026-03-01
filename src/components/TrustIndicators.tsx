@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, Users, IndianRupee, Rocket } from "lucide-react";
 
 const stats = [
@@ -25,12 +25,8 @@ const Counter = ({ target, prefix, suffix }: { target: number; prefix: string; s
           let current = 0;
           const timer = setInterval(() => {
             current += increment;
-            if (current >= target) {
-              setCount(target);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(current));
-            }
+            if (current >= target) { setCount(target); clearInterval(timer); }
+            else setCount(Math.floor(current));
           }, duration / steps);
         }
       },
@@ -48,20 +44,29 @@ const Counter = ({ target, prefix, suffix }: { target: number; prefix: string; s
 };
 
 const TrustIndicators = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <section className="bg-secondary section-padding">
-      <div className="section-container">
+    <section ref={ref} className="bg-secondary section-padding relative overflow-hidden">
+      <motion.div style={{ y: bgY }} className="absolute inset-0 bg-gradient-to-br from-accent/3 to-transparent pointer-events-none" />
+      <div className="section-container relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.15, duration: 0.5, type: "spring", stiffness: 100 }}
+              whileHover={{ scale: 1.05, y: -4 }}
+              className="text-center p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 cursor-default"
+              style={{ boxShadow: "var(--shadow-card)" }}
             >
-              <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
+              <motion.div whileHover={{ rotate: 10, scale: 1.1 }} transition={{ type: "spring" }}>
+                <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
+              </motion.div>
               <Counter target={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
               <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
             </motion.div>
