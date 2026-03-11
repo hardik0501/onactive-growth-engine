@@ -101,8 +101,8 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4"
-          >
-            Our <span className="text-accent">Services</span>
+           >
+            Our 360° <span className="text-accent">Services</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -110,7 +110,7 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-primary-foreground/75 text-lg max-w-2xl mx-auto"
           >
-            Integrated business solutions designed to streamline processes, enhance communication, and drive measurable growth.
+            Comprehensive business & digital marketing solutions designed to streamline processes, enhance communication, and drive measurable growth.
           </motion.p>
         </div>
       </section>
