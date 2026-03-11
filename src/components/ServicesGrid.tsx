@@ -89,8 +89,8 @@ const ServicesGrid = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="heading-section mb-4">Our Services</h2>
-          <p className="text-body max-w-2xl mx-auto">Integrated business solutions designed to streamline processes, enhance communication, and drive growth.</p>
+          <h2 className="heading-section mb-4">Our 360° Services</h2>
+          <p className="text-body max-w-2xl mx-auto">Comprehensive business & digital marketing solutions designed to streamline processes, enhance communication, and drive measurable growth.</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
