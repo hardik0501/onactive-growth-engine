@@ -32,7 +32,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {["Home", "About", "Services", "Case Studies", "Contact"].map((item) => (
                 <li key={item}>
-                  <Link to={item === "Home" ? "/" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(" ", "-")}`} className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">
+                  <Link to={item === "Home" ? "/" : item === "Services" ? "/services" : item === "About" ? "/about" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(" ", "-")}`} className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">
                     {item}
                   </Link>
                 </li>

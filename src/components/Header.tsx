@@ -5,8 +5,8 @@ import logo from "@/assets/onactive-logo.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
   { label: "Case Studies", href: "/#case-studies" },
   { label: "Contact", href: "/contact" },
 ];

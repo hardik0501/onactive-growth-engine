@@ -1,68 +1,117 @@
 import { motion } from "framer-motion";
-import { BarChart3, Share2, Search, Globe, Palette, Video } from "lucide-react";
+import { Phone, BarChart3, Code2, Users, Megaphone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const services = [
-  { icon: BarChart3, title: "Performance Marketing", desc: "Data-driven paid campaigns across Google, Meta & more to maximize ROAS and lead generation." },
-  { icon: Share2, title: "Social Media Management", desc: "Strategic content planning, community management, and growth across all major platforms." },
-  { icon: Search, title: "Search Engine Optimization", desc: "Technical & on-page SEO to boost organic rankings, traffic, and domain authority." },
-  { icon: Globe, title: "Website & Funnel Development", desc: "High-converting websites and sales funnels designed for speed, UX, and conversions." },
-  { icon: Palette, title: "Branding & Creative Strategy", desc: "Complete brand identity, visual design, and messaging that resonates with your audience." },
-  { icon: Video, title: "Video Marketing", desc: "Engaging video content from concept to distribution across YouTube, reels, and ads." },
+  {
+    icon: Phone,
+    title: "EPBX in Healthcare",
+    desc: "Advanced EPBX & cloud telephony for hospitals, clinics, and diagnostic centers — enhancing patient communication and appointment scheduling.",
+    color: "from-primary/20 to-primary/5",
+  },
+  {
+    icon: BarChart3,
+    title: "TeleCRM",
+    desc: "Manage leads effectively, automate calling processes, and gain valuable insights through comprehensive analytics to drive sales productivity.",
+    color: "from-accent/20 to-accent/5",
+  },
+  {
+    icon: Code2,
+    title: "HRMS Development",
+    desc: "Custom HRMS solutions — from recruitment and onboarding to payroll management and performance tracking for improved efficiency.",
+    color: "from-primary/20 to-accent/10",
+  },
+  {
+    icon: Users,
+    title: "Recruitment & Consultancy",
+    desc: "End-to-end talent acquisition, manpower solutions, and strategic HR consulting to build high-performing teams across industries.",
+    color: "from-accent/15 to-primary/10",
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing",
+    desc: "Full-spectrum SEO, SMM, PPC, and content marketing strategies to amplify your online presence and generate qualified leads.",
+    color: "from-primary/15 to-accent/15",
+  },
 ];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0, scale: 1,
-    transition: { delay: i * 0.1, duration: 0.5, type: "spring", stiffness: 100 },
-  }),
-};
 
 const ServicesGrid = () => {
   return (
     <section id="services" className="section-padding bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(40_100%_48%/0.04),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--accent)/0.04),transparent_50%)] pointer-events-none" />
       <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <h2 className="heading-section mb-4">Our Digital Marketing Services</h2>
-          <p className="text-body max-w-2xl mx-auto">Comprehensive 360° solutions to grow your business across every digital touchpoint.</p>
+          <h2 className="heading-section mb-4">Our Services</h2>
+          <p className="text-body max-w-2xl mx-auto">Integrated business solutions designed to streamline processes, enhance communication, and drive growth.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: i * 0.1, duration: 0.5, type: "spring", stiffness: 100 }}
               whileHover={{
-                y: -8,
+                y: -12,
+                rotateX: 2,
+                rotateY: -2,
                 transition: { duration: 0.3, type: "spring", stiffness: 300 },
               }}
-              className="card-service group cursor-default"
+              className="card-service group cursor-default relative"
+              style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
             >
-              <motion.div
-                className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 relative"
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <s.icon className="w-6 h-6 text-accent transition-transform duration-300 group-hover:scale-110" />
-                <div className="absolute inset-0 rounded-lg bg-accent/10 opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity" />
-              </motion.div>
-              <h3 className="text-lg font-semibold text-foreground mb-2 transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              <div className="mt-4 h-0.5 w-0 bg-accent rounded-full transition-all duration-500 group-hover:w-full" />
+              {/* Gradient overlay on hover */}
+              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+              <div className="relative z-10">
+                <motion.div
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-primary/10 flex items-center justify-center mb-5 relative"
+                  whileHover={{ scale: 1.2, rotate: 8 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <s.icon className="w-7 h-7 text-accent transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl border-2 border-accent/20"
+                    initial={{ scale: 1, opacity: 0 }}
+                    whileHover={{ scale: 1.4, opacity: 0 }}
+                    transition={{ duration: 0.6, repeat: Infinity }}
+                  />
+                </motion.div>
+                <h3 className="text-lg font-bold text-foreground mb-3 transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+
+                <motion.div
+                  className="mt-5 flex items-center gap-2 text-sm font-semibold text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                >
+                  Learn More →
+                </motion.div>
+              </div>
+
+              {/* Animated border glow */}
+              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: "inset 0 0 0 1px hsl(var(--accent) / 0.3), 0 0 30px -10px hsl(var(--accent) / 0.15)" }} />
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="text-center mt-12"
+        >
+          <Link to="/services" className="btn-outline">
+            View All Services →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

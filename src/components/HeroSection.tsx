@@ -47,7 +47,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed"
             >
-              Performance-driven marketing strategies that convert clicks into customers.
+              EPBX Solutions • TeleCRM • HRMS Development • Recruitment & Consulting • Digital Marketing — all under one roof.
             </motion.p>
 
             <motion.div
