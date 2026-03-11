@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { Target, BarChart2, UserCheck, Database, Settings } from "lucide-react";
 
 const points = [
-  { icon: Target, title: "ROI-Focused Approach", desc: "Every campaign optimized for measurable returns." },
-  { icon: BarChart2, title: "Transparent Reporting", desc: "Real-time dashboards and weekly performance reports." },
-  { icon: UserCheck, title: "Dedicated Account Manager", desc: "A single point of contact for seamless communication." },
-  { icon: Database, title: "Data-Driven Campaigns", desc: "Decisions backed by analytics, not guesswork." },
-  { icon: Settings, title: "Customized Strategies", desc: "Tailored solutions for your unique business needs." },
+  { icon: Target, title: "Integrated Solutions", desc: "A comprehensive suite of services that work together seamlessly." },
+  { icon: BarChart2, title: "Industry Expertise", desc: "Deep domain knowledge across healthcare, HR, sales, and marketing." },
+  { icon: UserCheck, title: "Client-Centric Approach", desc: "Every solution tailored to your unique business needs." },
+  { icon: Database, title: "Data-Driven Decisions", desc: "Analytics and insights powering every recommendation." },
+  { icon: Settings, title: "Scalable Solutions", desc: "Systems that grow with your business, from startup to enterprise." },
 ];
 
 const WhyChooseUs = () => {

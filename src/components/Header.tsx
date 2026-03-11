@@ -5,8 +5,8 @@ import logo from "@/assets/onactive-logo.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
   { label: "Case Studies", href: "/#case-studies" },
   { label: "Contact", href: "/contact" },
 ];
@@ -19,7 +19,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="section-container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="OnActive Logo" className="h-14 md:h-16 w-auto" />
+          <img src={logo} alt="OnActive Logo" className="h-10 md:h-12 w-auto" />
         </Link>
 
         {/* Desktop Nav */}

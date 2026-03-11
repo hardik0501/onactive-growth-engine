@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <img src={logo} alt="OnActive" className="h-10 brightness-0 invert" />
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
-              360° Digital Marketing Agency driving real business growth since 2019.
+              Empowering businesses to achieve operational excellence since 2019.
             </p>
             <div className="flex gap-3">
               <a
@@ -32,7 +32,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {["Home", "About", "Services", "Case Studies", "Contact"].map((item) => (
                 <li key={item}>
-                  <Link to={item === "Home" ? "/" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(" ", "-")}`} className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">
+                  <Link to={item === "Home" ? "/" : item === "Services" ? "/services" : item === "About" ? "/about" : item === "Contact" ? "/contact" : `/#${item.toLowerCase().replace(" ", "-")}`} className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">
                     {item}
                   </Link>
                 </li>
@@ -44,7 +44,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">Services</h4>
             <ul className="space-y-2">
-              {["Performance Marketing", "SEO", "Social Media", "Web Development", "Branding", "Video Marketing"].map((s) => (
+              {["EPBX in Healthcare", "TeleCRM", "HRMS Development", "Recruitment & Consultancy", "Digital Marketing"].map((s) => (
                 <li key={s}>
                   <span className="text-sm text-primary-foreground/70">{s}</span>
                 </li>

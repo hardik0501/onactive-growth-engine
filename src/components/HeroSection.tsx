@@ -37,8 +37,8 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-tight mb-6"
             >
-              360° Digital Marketing Agency in Jaipur Driving{" "}
-              <span className="text-accent">Real Business Growth</span>
+              Empowering Businesses to Achieve{" "}
+              <span className="text-accent">Operational Excellence</span>
             </motion.h1>
 
             <motion.p
@@ -47,7 +47,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed"
             >
-              Performance-driven marketing strategies that convert clicks into customers.
+              EPBX Solutions • TeleCRM • HRMS Development • Recruitment & Consulting • Digital Marketing — all under one roof.
             </motion.p>
 
             <motion.div
