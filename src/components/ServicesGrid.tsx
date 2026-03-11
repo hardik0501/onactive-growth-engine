@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, BarChart3, Code2, Users, Megaphone } from "lucide-react";
+import { Phone, BarChart3, Code2, Users, Megaphone, Search, Share2, MousePointerClick, Globe, Palette, Video, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
