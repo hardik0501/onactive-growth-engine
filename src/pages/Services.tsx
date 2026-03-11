@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, BarChart3, Code2, Users, Megaphone, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Phone, BarChart3, Code2, Users, Megaphone, ArrowRight, CheckCircle2, Search, Share2, MousePointerClick, Globe, Palette, Video, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -34,9 +34,58 @@ const services = [
   {
     icon: Megaphone,
     title: "Digital Marketing",
-    tagline: "Amplify Your Online Presence",
-    description: "Amplify your online presence and generate qualified leads with our data-driven digital marketing strategies. We offer a full spectrum of services including SEO, SMM, PPC, and content marketing to help you achieve your business objectives.",
-    features: ["Search Engine Optimization (SEO)", "Social Media Marketing (SMM)", "Pay-Per-Click (PPC) advertising", "Content marketing strategy", "Analytics & performance reporting"],
+    tagline: "360° Growth Solutions",
+    description: "Amplify your online presence and generate qualified leads with our data-driven digital marketing strategies. We offer a full spectrum of services to help you achieve your business objectives.",
+    features: ["Integrated campaign management", "Multi-channel strategy", "Performance tracking & analytics", "Lead generation funnels", "Marketing automation"],
+  },
+  {
+    icon: Search,
+    title: "Search Engine Optimization",
+    tagline: "Dominate Search Rankings",
+    description: "Data-driven SEO strategies that boost your organic rankings and drive highly targeted traffic. We cover on-page, off-page, technical SEO, and local SEO to ensure maximum visibility.",
+    features: ["On-page & off-page SEO", "Technical SEO audits", "Local SEO & Google My Business", "Keyword research & strategy", "Link building & authority growth"],
+  },
+  {
+    icon: Share2,
+    title: "Social Media Marketing",
+    tagline: "Engage & Grow Your Audience",
+    description: "Strategic social media management across Instagram, Facebook, LinkedIn & YouTube. We build brand awareness, create engaging content, and grow your community with data-backed strategies.",
+    features: ["Content calendar & creation", "Community management", "Influencer collaborations", "Social media advertising", "Analytics & growth reporting"],
+  },
+  {
+    icon: MousePointerClick,
+    title: "Pay-Per-Click (PPC)",
+    tagline: "Maximize Your Ad ROI",
+    description: "High-ROI paid advertising campaigns on Google Ads, Meta Ads, and other platforms. We optimize every rupee of ad spend to deliver maximum conversions and qualified leads.",
+    features: ["Google Ads management", "Meta & Instagram Ads", "Remarketing campaigns", "A/B testing & optimization", "Conversion tracking & reporting"],
+  },
+  {
+    icon: Globe,
+    title: "Website & Funnel Development",
+    tagline: "Convert Visitors Into Customers",
+    description: "Conversion-optimized websites, landing pages, and sales funnels designed to capture leads and drive business growth. Built with modern tech for speed and performance.",
+    features: ["Responsive website design", "Landing page development", "Sales funnel creation", "E-commerce solutions", "Performance optimization"],
+  },
+  {
+    icon: Palette,
+    title: "Branding & Creative Strategy",
+    tagline: "Make Your Brand Unforgettable",
+    description: "Complete brand identity design from logo creation to brand guidelines and packaging. We craft creative assets that communicate your brand's value and leave a lasting impression.",
+    features: ["Logo & visual identity", "Brand guidelines", "Packaging design", "Marketing collateral", "Creative campaign design"],
+  },
+  {
+    icon: Video,
+    title: "Video Marketing",
+    tagline: "Tell Your Story Visually",
+    description: "Professional video production including corporate videos, reels, product demos, and YouTube marketing. Engage your audience with compelling visual content that drives action.",
+    features: ["Corporate video production", "Social media reels & shorts", "Product demo videos", "YouTube channel management", "Video ad campaigns"],
+  },
+  {
+    icon: FileText,
+    title: "Content Marketing",
+    tagline: "Build Authority & Trust",
+    description: "Strategic content creation that establishes your brand as an industry authority. From blogs and articles to infographics and email campaigns, we nurture leads through valuable content.",
+    features: ["Blog & article writing", "Infographic design", "Email marketing campaigns", "Whitepapers & case studies", "Content strategy & planning"],
   },
 ];
 
@@ -52,8 +101,8 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4"
-          >
-            Our <span className="text-accent">Services</span>
+           >
+            Our 360° <span className="text-accent">Services</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +110,7 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-primary-foreground/75 text-lg max-w-2xl mx-auto"
           >
-            Integrated business solutions designed to streamline processes, enhance communication, and drive measurable growth.
+            Comprehensive business & digital marketing solutions designed to streamline processes, enhance communication, and drive measurable growth.
           </motion.p>
         </div>
       </section>

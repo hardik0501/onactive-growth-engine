@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, BarChart3, Code2, Users, Megaphone } from "lucide-react";
+import { Phone, BarChart3, Code2, Users, Megaphone, Search, Share2, MousePointerClick, Globe, Palette, Video, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
@@ -33,6 +33,48 @@ const services = [
     desc: "Full-spectrum SEO, SMM, PPC, and content marketing strategies to amplify your online presence and generate qualified leads.",
     color: "from-primary/15 to-accent/15",
   },
+  {
+    icon: Search,
+    title: "Search Engine Optimization",
+    desc: "Data-driven SEO strategies including on-page, off-page, technical SEO, and local SEO to boost organic rankings and drive targeted traffic.",
+    color: "from-primary/20 to-accent/5",
+  },
+  {
+    icon: Share2,
+    title: "Social Media Marketing",
+    desc: "Strategic social media management across Instagram, Facebook, LinkedIn & YouTube to build brand awareness and engage your audience.",
+    color: "from-accent/20 to-primary/5",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Pay-Per-Click (PPC)",
+    desc: "High-ROI Google Ads, Meta Ads, and remarketing campaigns that convert clicks into customers with optimized ad spend.",
+    color: "from-primary/15 to-accent/10",
+  },
+  {
+    icon: Globe,
+    title: "Website & Funnel Development",
+    desc: "Conversion-optimized websites, landing pages, and sales funnels built to capture leads and drive business growth.",
+    color: "from-accent/15 to-primary/15",
+  },
+  {
+    icon: Palette,
+    title: "Branding & Creative Strategy",
+    desc: "Complete brand identity design — logos, brand guidelines, packaging, and creative assets that make your brand unforgettable.",
+    color: "from-primary/20 to-accent/15",
+  },
+  {
+    icon: Video,
+    title: "Video Marketing",
+    desc: "Professional video production, reels, corporate videos, and YouTube marketing to engage audiences with compelling visual content.",
+    color: "from-accent/20 to-accent/5",
+  },
+  {
+    icon: FileText,
+    title: "Content Marketing",
+    desc: "Strategic content creation — blogs, articles, infographics, and email campaigns that establish authority and nurture leads.",
+    color: "from-primary/15 to-primary/5",
+  },
 ];
 
 const ServicesGrid = () => {
@@ -47,8 +89,8 @@ const ServicesGrid = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="heading-section mb-4">Our Services</h2>
-          <p className="text-body max-w-2xl mx-auto">Integrated business solutions designed to streamline processes, enhance communication, and drive growth.</p>
+          <h2 className="heading-section mb-4">Our 360° Services</h2>
+          <p className="text-body max-w-2xl mx-auto">Comprehensive business & digital marketing solutions designed to streamline processes, enhance communication, and drive measurable growth.</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
