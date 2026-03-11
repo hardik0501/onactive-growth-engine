@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <img src={logo} alt="OnActive" className="h-10 brightness-0 invert" />
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
-              360° Digital Marketing Agency driving real business growth since 2019.
+              Empowering businesses to achieve operational excellence since 2019.
             </p>
             <div className="flex gap-3">
               <a
