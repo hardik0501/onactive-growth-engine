@@ -44,7 +44,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">Services</h4>
             <ul className="space-y-2">
-              {["Performance Marketing", "SEO", "Social Media", "Web Development", "Branding", "Video Marketing"].map((s) => (
+              {["EPBX in Healthcare", "TeleCRM", "HRMS Development", "Recruitment & Consultancy", "Digital Marketing"].map((s) => (
                 <li key={s}>
                   <span className="text-sm text-primary-foreground/70">{s}</span>
                 </li>
