@@ -18,8 +18,8 @@ const HeroSection = () => {
       <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -60]) }} className="absolute top-20 left-10 w-64 h-64 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
       <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }} className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-primary-foreground/5 blur-3xl pointer-events-none" />
 
-      <div className="section-container py-16 md:py-24 lg:py-32 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="section-container py-12 md:py-20 lg:py-32 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div style={{ y, opacity }} className="text-primary-foreground">
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -35,7 +35,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-tight mb-6"
+              className="text-2xl md:text-3xl lg:text-4xl xl:text-[3.25rem] font-bold leading-tight mb-6"
             >
               Empowering Businesses to Achieve{" "}
               <span className="text-accent">Operational Excellence</span>
@@ -45,7 +45,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed"
+              className="text-sm md:text-base lg:text-lg text-primary-foreground/75 mb-8 max-w-lg leading-relaxed"
             >
               EPBX Solutions • TeleCRM • HRMS Development • Recruitment & Consulting • Digital Marketing — all under one roof.
             </motion.p>
@@ -54,13 +54,13 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
-              <Link to="/contact" className="btn-primary animate-glow-pulse">
+              <Link to="/contact" className="btn-primary animate-glow-pulse text-sm md:text-base justify-center">
                 Book Free Strategy Call
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <a href="#case-studies" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+              <a href="#case-studies" className="btn-outline border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground text-sm md:text-base justify-center">
                 <Play className="w-4 h-4" />
                 View Our Work
               </a>
