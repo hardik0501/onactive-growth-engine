@@ -1,6 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Phone, BarChart3, Code2, Users, Megaphone, ArrowRight, CheckCircle2, Search, Share2, MousePointerClick, Globe, Palette, Video, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import servicesHero from "@/assets/services-hero.jpg";
+import serviceEpbx from "@/assets/service-epbx.jpg";
+import serviceTelecrm from "@/assets/service-telecrm.jpg";
+import serviceHrms from "@/assets/service-hrms.jpg";
 
 const services = [
   {
@@ -9,6 +14,7 @@ const services = [
     tagline: "Seamless Communication for Healthcare",
     description: "Providing advanced EPBX and cloud telephony solutions specifically designed for the healthcare sector. Our systems enhance patient communication, streamline appointment scheduling, and ensure seamless connectivity for hospitals, clinics, and diagnostic centers.",
     features: ["Cloud-based EPBX systems", "Patient call routing", "Appointment scheduling integration", "Multi-location connectivity", "Call analytics & reporting"],
+    image: serviceEpbx,
   },
   {
     icon: BarChart3,
@@ -16,6 +22,7 @@ const services = [
     tagline: "Smart Lead Management & Sales Automation",
     description: "We enable businesses to manage leads effectively, automate calling processes, and gain valuable insights through comprehensive analytics and reporting, ultimately driving sales productivity.",
     features: ["Lead management automation", "Auto-dialer integration", "Real-time analytics dashboard", "Call recording & tracking", "Sales pipeline management"],
+    image: serviceTelecrm,
   },
   {
     icon: Code2,
@@ -23,6 +30,7 @@ const services = [
     tagline: "End-to-End Human Resource Management",
     description: "Our expert team develops HRMS solutions — from recruitment and onboarding to payroll management and performance tracking. Our HRMS solutions are designed to improve efficiency and employee engagement.",
     features: ["Recruitment & onboarding modules", "Payroll & attendance management", "Performance tracking", "Employee self-service portal", "Custom workflow automation"],
+    image: serviceHrms,
   },
   {
     icon: Users,
@@ -90,10 +98,22 @@ const services = [
 ];
 
 const Services = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroImgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const heroImgOpacity = useTransform(scrollYProgress, [0, 0.8], [0.3, 0]);
+
   return (
     <>
       {/* Hero */}
-      <section className="gradient-hero py-16 md:py-24 relative overflow-hidden">
+      <section ref={heroRef} className="gradient-hero py-16 md:py-24 relative overflow-hidden">
+        <motion.img
+          style={{ y: heroImgY, opacity: heroImgOpacity }}
+          src={servicesHero}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          aria-hidden
+        />
         <motion.div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
         <div className="section-container relative z-10 text-center">
           <motion.h1
@@ -108,7 +128,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-primary-foreground/75 text-lg max-w-2xl mx-auto"
+            className="text-primary-foreground/75 text-base md:text-lg max-w-2xl mx-auto"
           >
             Comprehensive business & digital marketing solutions designed to streamline processes, enhance communication, and drive measurable growth.
           </motion.p>
@@ -117,7 +137,7 @@ const Services = () => {
 
       {/* Services Detail */}
       <section className="section-padding bg-background">
-        <div className="section-container space-y-24">
+        <div className="section-container space-y-16 md:space-y-24">
           {services.map((service, i) => {
             const isEven = i % 2 === 0;
             return (
@@ -127,7 +147,7 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
-                className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${!isEven ? "md:[direction:rtl]" : ""}`}
+                className={`grid md:grid-cols-2 gap-8 md:gap-16 items-center ${!isEven ? "md:[direction:rtl]" : ""}`}
               >
                 {/* Content */}
                 <div className={!isEven ? "md:[direction:ltr]" : ""}>
@@ -139,37 +159,70 @@ const Services = () => {
                     <service.icon className="w-7 h-7 text-accent" />
                   </motion.div>
                   <span className="text-accent font-semibold text-sm uppercase tracking-wider">{service.tagline}</span>
-                  <h2 className="heading-section mt-2 mb-4">{service.title}</h2>
-                  <p className="text-body mb-6">{service.description}</p>
+                  <h2 className="heading-section mt-2 mb-4 text-xl md:text-2xl lg:text-3xl">{service.title}</h2>
+                  <p className="text-body text-sm md:text-base mb-6">{service.description}</p>
                   <Link to="/contact" className="btn-primary text-sm">
                     Get Started <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
 
-                {/* Features Card */}
+                {/* Features Card or Image */}
                 <div className={!isEven ? "md:[direction:ltr]" : ""}>
-                  <motion.div
-                    whileHover={{ y: -6, rotateX: 2 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                    className="card-service"
-                  >
-                    <h3 className="font-bold text-foreground mb-5 text-lg">Key Features</h3>
-                    <ul className="space-y-3">
-                      {service.features.map((f, fi) => (
-                        <motion.li
-                          key={f}
-                          initial={{ opacity: 0, x: -15 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: fi * 0.08, duration: 0.3 }}
-                          className="flex items-start gap-3 text-sm text-muted-foreground"
-                        >
-                          <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                          {f}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                  {service.image ? (
+                    <motion.div
+                      whileHover={{ y: -6 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className="space-y-4"
+                    >
+                      <img
+                        src={service.image}
+                        alt={`${service.title} visual`}
+                        className="rounded-xl shadow-lg w-full aspect-square object-cover"
+                        loading="lazy"
+                      />
+                      <div className="card-service p-4 md:p-6">
+                        <h3 className="font-bold text-foreground mb-3 text-base">Key Features</h3>
+                        <ul className="space-y-2">
+                          {service.features.map((f, fi) => (
+                            <motion.li
+                              key={f}
+                              initial={{ opacity: 0, x: -15 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: fi * 0.08, duration: 0.3 }}
+                              className="flex items-start gap-2 text-sm text-muted-foreground"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                              {f}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      whileHover={{ y: -6, rotateX: 2 }}
+                      transition={{ type: "spring", stiffness: 200 }}
+                      className="card-service"
+                    >
+                      <h3 className="font-bold text-foreground mb-5 text-lg">Key Features</h3>
+                      <ul className="space-y-3">
+                        {service.features.map((f, fi) => (
+                          <motion.li
+                            key={f}
+                            initial={{ opacity: 0, x: -15 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: fi * 0.08, duration: 0.3 }}
+                            className="flex items-start gap-3 text-sm text-muted-foreground"
+                          >
+                            <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                            {f}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
                 </div>
               </motion.div>
             );
@@ -186,13 +239,13 @@ const Services = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
               Need a Custom Solution?
             </h2>
-            <p className="text-primary-foreground/70 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-primary-foreground/70 text-base md:text-lg mb-8 max-w-xl mx-auto">
               Let's discuss how our integrated services can transform your business operations.
             </p>
-            <Link to="/contact" className="btn-primary text-lg px-10 py-4 animate-glow-pulse">
+            <Link to="/contact" className="btn-primary text-base md:text-lg px-8 md:px-10 py-3 md:py-4 animate-glow-pulse">
               Schedule Free Consultation <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>

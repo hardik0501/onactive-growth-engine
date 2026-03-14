@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Lightbulb, ShieldCheck, Heart } from "lucide-react";
+import aboutTeam from "@/assets/about-team.jpg";
 
 const values = [
   { icon: Lightbulb, title: "Integrated Solutions", desc: "A comprehensive suite of services that work together seamlessly, eliminating the need for multiple vendors." },
@@ -22,6 +23,7 @@ const About = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <>
@@ -41,18 +43,48 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-primary-foreground/75 text-lg max-w-2xl mx-auto"
+            className="text-primary-foreground/75 text-base md:text-lg max-w-2xl mx-auto"
           >
             Empowering businesses to achieve operational excellence since 2019.
           </motion.p>
         </div>
       </section>
 
-      {/* Story */}
+      {/* Story with Image */}
       <section ref={ref} className="section-padding bg-background relative overflow-hidden">
         <motion.div style={{ y: bgY }} className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
         <div className="section-container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Image */}
+            <motion.div style={{ y: imgY }}>
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+                className="relative"
+              >
+                <img
+                  src={aboutTeam}
+                  alt="OnActive team working together"
+                  className="rounded-2xl shadow-xl w-full object-cover aspect-[16/10]"
+                  loading="lazy"
+                />
+                <div className="absolute -left-3 top-8 w-1.5 h-20 rounded-full bg-accent" />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-card rounded-xl p-4 shadow-lg border border-border"
+                >
+                  <p className="text-2xl font-bold text-primary">Since</p>
+                  <p className="text-xl font-bold text-accent">2019</p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Content */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +115,7 @@ const About = () => {
           >
             Why Choose OnActive?
           </motion.h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -126,14 +158,14 @@ const About = () => {
             {milestones.map((m, i) => (
               <motion.div
                 key={m.year}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                transition={{ delay: i * 0.1, duration: 0.5, type: "spring", stiffness: 100 }}
                 className={`relative flex items-start gap-4 py-6 md:w-1/2 ${i % 2 === 0 ? "md:pr-10 md:text-right md:ml-0" : "md:pl-10 md:ml-auto"}`}
               >
                 <div className={`absolute w-3 h-3 rounded-full bg-accent border-2 border-background top-8 ${i % 2 === 0 ? "left-[14px] md:left-auto md:-right-[7px]" : "left-[14px] md:-left-[7px]"}`} />
-                <div className={`pl-8 md:pl-0 ${i % 2 === 0 ? "" : ""}`}>
+                <div className="pl-8 md:pl-0">
                   <span className="text-accent font-bold text-sm">{m.year}</span>
                   <p className="text-sm text-muted-foreground mt-1">{m.text}</p>
                 </div>
@@ -152,13 +184,13 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-primary-foreground/70 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-primary-foreground/70 text-base md:text-lg mb-8 max-w-xl mx-auto">
               Let's discuss how our integrated solutions can drive your growth.
             </p>
-            <Link to="/contact" className="btn-primary text-lg px-10 py-4 animate-glow-pulse">
+            <Link to="/contact" className="btn-primary text-base md:text-lg px-8 md:px-10 py-3 md:py-4 animate-glow-pulse">
               Get In Touch <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>

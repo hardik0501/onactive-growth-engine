@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { useRef } from "react";
+import caseStudyImg from "@/assets/case-study-results.jpg";
 
 const cases = [
   {
@@ -23,8 +25,12 @@ const cases = [
 ];
 
 const CaseStudies = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <section id="case-studies" className="section-padding bg-secondary relative overflow-hidden">
+    <section ref={ref} id="case-studies" className="section-padding bg-secondary relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(40_100%_48%/0.04),transparent_50%)] pointer-events-none" />
       <div className="section-container relative z-10">
         <motion.div
@@ -36,6 +42,23 @@ const CaseStudies = () => {
         >
           <h2 className="heading-section mb-4">Case Studies</h2>
           <p className="text-body">Real results from real clients.</p>
+        </motion.div>
+
+        {/* Visual banner */}
+        <motion.div
+          style={{ y: imgY }}
+          className="mb-12 rounded-2xl overflow-hidden shadow-lg"
+        >
+          <motion.img
+            initial={{ opacity: 0, scale: 1.05 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            src={caseStudyImg}
+            alt="Analytics dashboard showing client growth results"
+            className="w-full h-48 md:h-64 object-cover"
+            loading="lazy"
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
