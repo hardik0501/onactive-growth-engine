@@ -81,7 +81,7 @@ const Contact = () => {
                   <option>SEO</option>
                   <option>Website Development</option>
                   <option>Branding</option>
-                  <option>Video Marketing</option>
+                  <option>Video Marketing </option>
                   <option>Complete 360° Services</option>
                 </select>
                 <textarea
