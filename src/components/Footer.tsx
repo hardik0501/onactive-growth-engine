@@ -67,9 +67,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@onactive.in" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-accent transition-colors">
+                <a href="mailto:connect@onactive.in" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-accent transition-colors">
                   <Mail className="w-4 h-4 text-accent shrink-0" />
-                  hello@onactive.in
+                  connect@onactive.in
                 </a>
               </li>
             </ul>
