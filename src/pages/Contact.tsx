@@ -115,11 +115,11 @@ const Contact = () => {
                     </div>
                     <span className="font-medium">Chat on WhatsApp</span>
                   </a>
-                  <a href="mailto:hello@onactive.in" className="flex items-center gap-3 text-foreground hover:text-accent transition-colors">
+                  <a href="mailto:connect@onactive.in" className="flex items-center gap-3 text-foreground hover:text-accent transition-colors">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5 text-accent" />
                     </div>
-                    <span className="font-medium">hello@onactive.in</span>
+                    <span className="font-medium">connect@onactive.in</span>
                   </a>
                   <div className="flex items-center gap-3 text-foreground">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
